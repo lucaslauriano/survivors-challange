@@ -8,7 +8,7 @@ const SearchBox = () => {
   return (
     <Flex
       as="label"
-      py="1"
+      py="2"
       px="8"
       ml="6"
       bg="gray.800"

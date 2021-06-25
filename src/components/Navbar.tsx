@@ -24,7 +24,7 @@ const Navbar = ({ isLarge }: NavbarProps) => {
         </Text>
       </Text>
 
-      <Flex h="auto" width="100%" align="center" justifyContent="center">
+      <Flex flex="1" ml="2">
         <SearchBox />
       </Flex>
 
@@ -56,7 +56,12 @@ const Navbar = ({ isLarge }: NavbarProps) => {
           h="32px"
           border="2px"
           variant="outline"
+          color="yellow.500"
           colorScheme="yellow"
+          _hover={{
+            bgColor: "gray.800",
+            color: "yellow.400",
+          }}
         >
           Sair
         </Button>
