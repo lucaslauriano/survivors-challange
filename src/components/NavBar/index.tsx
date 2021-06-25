@@ -1,6 +1,8 @@
 import React from "react";
-import { Flex, Text, Button, HStack, Box, Avatar } from "@chakra-ui/react";
+import { Flex, Button, HStack } from "@chakra-ui/react";
 import SearchBox from "./SearchBox";
+import Profile from "./Profile";
+import Logo from "./Logo";
 
 interface NavbarProps {
   isLarge: boolean;
@@ -17,39 +19,20 @@ const Navbar = ({ isLarge }: NavbarProps) => {
       maxWidth={1480}
       boxShadow="base"
     >
-      <Text fontSize="2xl" fontWeight="bold" letterSpacing="tight" w="64">
-        survivors
-        <Text as="span" fontSize="2xl" ml="1" mt="1" color="yellow.500">
-          ☣
-        </Text>
-      </Text>
+      <Logo isLarge={true} />
 
-      <Flex flex="1" ml="2">
-        <SearchBox />
-      </Flex>
+      <SearchBox />
 
       <Flex align="center" ml="auto">
         <HStack
-          spacing="8"
           mx="8"
           pr="6"
           color="gray.300"
-          borderRightWidth={1}
+          spacing="8"
           borderColor="gray.700"
+          borderRightWidth={1}
         >
-          {isLarge ? (
-            <Flex align="center">
-              <Box mr="4" textAlign="right">
-                <Text fontSize="small">Leon S. Kennedy</Text>
-                <Text color="gray.300" fontSize="smaller">
-                  leon.kennedy@gmail.com
-                </Text>
-              </Box>
-              <Avatar size="sm" name="Leon Kennedy" />
-            </Flex>
-          ) : (
-            <Text width="100px">Hello, Leon</Text>
-          )}
+          <Profile isLarge={true} />
         </HStack>
         <Button
           w="57px"

@@ -1,7 +1,7 @@
 import { Box, Flex, Text, HStack, Avatar, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import AreaChart from "../components/AreaChart";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavBar";
 import Sidebar from "../components/Sidebar";
 
 export default function Dashboar() {

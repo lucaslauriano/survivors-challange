@@ -10,7 +10,7 @@ const SearchBox = () => {
       as="label"
       py="2"
       px="8"
-      ml="6"
+      ml="8"
       bg="gray.800"
       flex="1"
       color="gray.200"
