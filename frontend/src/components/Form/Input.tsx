@@ -38,7 +38,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         color="gray.500"
         bgColor="gray.900"
         variant="filled"
-        focusBorderColor="purple.500"
+        focusBorderColor="yellow.500"
         borderRadius="6"
         _placeholder={{
           color: "gray.500",

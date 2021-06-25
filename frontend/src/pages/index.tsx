@@ -45,10 +45,10 @@ const App = () => {
 
         <Button
           mt="16px"
-          bg="purple.500"
+          bg="yellow.500"
           type="submit"
           color="white"
-          colorScheme="purple"
+          colorScheme="yellow"
           isFullWidth
           borderRadius={6}
         >
