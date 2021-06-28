@@ -1,13 +1,25 @@
 import React from "react";
-import { Flex, Button, HStack } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  Button,
+  HStack,
+  IconButton,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import SearchBox from "./SearchBox";
 import Profile from "./Profile";
 import Logo from "./Logo";
+import { RiMenuLine } from "react-icons/ri";
+import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
 
-interface NavbarProps {
-  isLarge: boolean;
-}
-const Navbar = ({ isLarge }: NavbarProps) => {
+const Navbar = () => {
+  const { onOpen } = useSidebarDrawer();
+  const isLarge = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <Flex
       w="100%"
@@ -19,32 +31,46 @@ const Navbar = ({ isLarge }: NavbarProps) => {
       maxWidth={1480}
       boxShadow="base"
     >
-      <Logo isLarge={true} />
-
+      {!isLarge && (
+        <IconButton
+          aria-label="Open navigation"
+          icon={<Icon as={RiMenuLine} fontSize="24" />}
+          variant="unstyled"
+          onClick={onOpen}
+          mr="2"
+          _focus={{
+            boxShadow: "none",
+          }}
+        />
+      )}
+      {isLarge && <Logo />}
       <SearchBox />
 
       <Flex align="center" ml="auto">
-        <HStack
-          mx="8"
-          pr="6"
-          color="gray.300"
-          spacing="8"
-          borderColor="gray.700"
-          borderRightWidth={1}
-        >
-          <Profile isLarge={true} />
-        </HStack>
+        {isLarge && (
+          <HStack
+            mx="8"
+            pr="8"
+            color="gray.300"
+            spacing="8"
+            borderColor="gray.700"
+            borderRightWidth={1}
+          >
+            <Profile />
+          </HStack>
+        )}
         <Button
           w="57px"
           h="32px"
-          border="2px"
-          variant="outline"
           color="yellow.500"
-          colorScheme="yellow"
+          border="2px"
           _hover={{
             bgColor: "gray.800",
             color: "yellow.400",
           }}
+          variant="outline"
+          alignSelf="flex-end"
+          colorScheme="yellow"
         >
           Sair
         </Button>

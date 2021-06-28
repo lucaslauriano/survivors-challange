@@ -7,6 +7,7 @@ import {
   Heading,
   useDisclosure,
   useBreakpointValue,
+  Divider,
 } from "@chakra-ui/react";
 import React from "react";
 import BlankPage from "../../components/BlankPage";
@@ -17,12 +18,10 @@ import { RiUserAddLine } from "react-icons/ri";
 
 const Survivors = () => {
   // const { data, isLoading, isFetching, error } = useInfecteds();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const data = [];
   const isLoading = false;
   const isFetching = false;
-
   const isLarge = useBreakpointValue({
     base: false,
     md: true,
@@ -30,26 +29,14 @@ const Survivors = () => {
 
   return (
     <Box>
-      <Navbar isLarge={true} />
-
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-        <Sidebar isLarge={true} />
+        <Sidebar />
 
         <Box flex="1" borderRadius={6} bg="gray.800" p="8">
-          <Flex mb="8" justify="space-between" align="center">
-            <Heading size="lg" fontWeight="normal">
-              Survivors
-            </Heading>
-            <Button
-              size="sm"
-              variant="solid"
-              onClick={onOpen}
-              leftIcon={<Icon as={RiUserAddLine} />}
-              colorScheme="yellow"
-            >
-              Infected
-            </Button>
-          </Flex>
+          <Heading size="md" fontWeight="normal">
+            Survivors
+          </Heading>
+          <Divider my="6" borderColor="gray.700" />
 
           {isLoading ? (
             <Flex>
@@ -60,19 +47,6 @@ const Survivors = () => {
           ) : (
             <BlankPage />
           )}
-
-          <Button
-            size="sm"
-            variant="outline"
-            color="yellow.500"
-            colorScheme="yellow"
-            _hover={{
-              bgColor: "gray.800",
-              color: "yellow.400",
-            }}
-          >
-            Help
-          </Button>
         </Box>
       </Flex>
     </Box>

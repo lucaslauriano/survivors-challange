@@ -1,23 +1,12 @@
 import React from "react";
-import {
-  Box,
-  Flex,
-  Icon,
-  Text,
-  Stack,
-  Button,
-  Center,
-  Heading,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Flex, Text, Stack, Button } from "@chakra-ui/react";
 import Input from "../components/Form/Input";
+import { QueryClient } from "react-query";
+import Navbar from "../components/NavBar";
+
+export const queryClient = new QueryClient();
 
 const App = () => {
-  const isLarge = useBreakpointValue({
-    base: false,
-    md: true,
-  });
-
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
       <Flex

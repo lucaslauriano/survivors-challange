@@ -5,11 +5,11 @@ const Pagination = () => {
   return (
     <Stack
       w="100%"
-      mt="6"
-      px="6"
+      mt="8"
       flex="1"
+      align="center"
       justify={["center", "space-between"]}
-      direction={["column", "row", "row"]}
+      direction={["column", "row"]}
     >
       <Stack direction="row">
         <Text fontWeight="700">0 -</Text>

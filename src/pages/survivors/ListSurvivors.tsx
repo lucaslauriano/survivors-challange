@@ -3,21 +3,22 @@ import {
   Tr,
   Th,
   Box,
-  Flex,
   Text,
+  Icon,
   Thead,
   Table,
   Tbody,
   Button,
   Spinner,
   Checkbox,
-  Icon,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { RiUserSearchLine } from "react-icons/ri";
 import SkeletonTBody from "../../components/SkeletonTable";
 import Pagination from "../../components/Pagination";
 import { Survivors } from "../../types/survivors";
+import Link from "next/link";
 
 interface ListSurvivorsProps {
   survivors?: Survivors[];
@@ -30,10 +31,14 @@ const ListSurvivors = ({
   isFetching,
   survivors,
 }: ListSurvivorsProps) => {
-  const handleAttendSurvivors = async (id: number) => {};
+  const isLarge = useBreakpointValue({
+    small: false,
+    lg: true,
+  });
 
+  const handleAddSurvivors = async (id: number) => {};
   return (
-    <Box mb="8">
+    <Box>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -45,22 +50,28 @@ const ListSurvivors = ({
               <>
                 <Thead>
                   <Tr>
-                    <Th px="6" color="gray.300" width="8">
+                    <Th px={["4", "4", "4", "6"]} color="gray.300" width="8">
                       <Checkbox colorScheme="yellow" />
                     </Th>
-                    <Th px="6" color="gray.300" width="8">
+                    <Th px={["4", "4", "4", "6"]} color="gray.300" width="8">
                       Survivor
                     </Th>
-                    <Th px="6" color="gray.300" width="8">
-                      Infected
-                    </Th>
-                    <Th px="6" color="gray.300" width="8"></Th>
+                    {isLarge && (
+                      <Th px={["4", "4", "4", "6"]} color="gray.300" width="8">
+                        Infected
+                      </Th>
+                    )}
+                    <Th
+                      px={["4", "4", "4", "6"]}
+                      color="gray.300"
+                      width="8"
+                    ></Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {/*  {survivors?.map((item) => ( */}
                   <Tr>
-                    <Td w="10%" px="6">
+                    <Td w="10%" px={["4", "4", "4", "6"]}>
                       <Checkbox colorScheme="yellow" />
                     </Td>
                     <Td w="45%">
@@ -74,26 +85,30 @@ const ListSurvivors = ({
                         </Text>
                       </Box>
                     </Td>
-                    <Td w="40%">
-                      <Box>
-                        <Text fontSize="12">04 de Abril de 2021</Text>
-                      </Box>
-                    </Td>
+                    {isLarge && (
+                      <Td w="40%">
+                        <Box>
+                          <Text fontSize="12">04 de Abril de 2021</Text>
+                        </Box>
+                      </Td>
+                    )}
                     <Td w="5%">
                       <Box>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          color="blue.200"
-                          colorScheme="blue"
-                          leftIcon={<Icon as={RiUserSearchLine} />}
-                          _hover={{
-                            bgColor: "gray.800",
-                            color: "blue.400",
-                          }}
-                        >
-                          View
-                        </Button>
+                        <Link href="/survivors/view" passHref>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            color="blue.200"
+                            colorScheme="blue"
+                            leftIcon={<Icon as={RiUserSearchLine} />}
+                            _hover={{
+                              bgColor: "gray.800",
+                              color: "blue.400",
+                            }}
+                          >
+                            View
+                          </Button>
+                        </Link>
                       </Box>
                     </Td>
                   </Tr>
