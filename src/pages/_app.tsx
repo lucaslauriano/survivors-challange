@@ -5,6 +5,11 @@ import { SidebarDrawerProvider } from "../contexts/SidebarDrawerContext";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { queryClient } from ".";
+import makeServer from "../services/mirage";
+
+if (process.env.NODE_ENV === "development") {
+  makeServer();
+}
 
 function App({ Component, pageProps }: AppProps) {
   return (

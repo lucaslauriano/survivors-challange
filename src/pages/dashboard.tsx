@@ -9,15 +9,9 @@ export default function Dashboar() {
     <Flex direction="column" h="100vh">
       <Navbar />
 
-      <Flex w="100%" px="6" mx="auto" as="header" maxWidth={1480}>
+      <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
-        <SimpleGrid
-          flex="1"
-          gap="4"
-          minChildWidth={320}
-          aling="flex-start"
-          mt="8"
-        >
+        <SimpleGrid flex="1" gap="4" minChildWidth={320} aling="flex-start">
           <AreaChart title="Inffefcteds - Week" />
           <AreaChart title="Inffefcteds - Month" />
         </SimpleGrid>

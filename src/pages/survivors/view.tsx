@@ -88,14 +88,6 @@ const ViewSurvivorModal = ({
               <Input name="name" label="Survivor's Name" />
               <Input name="email" type="email" label="Survivor's E-mail" />
             </SimpleGrid>
-            <SimpleGrid minChildWidth="240px" spacing="8" w="100%">
-              <Input name="password" type="password" label="Password" />
-              <Input
-                name="passwordConfirmation"
-                type="password"
-                label="Confirmation"
-              />
-            </SimpleGrid>
           </VStack>
 
           <Flex mt="8" justifyContent="flex-end">

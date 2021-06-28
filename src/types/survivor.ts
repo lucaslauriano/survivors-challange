@@ -1,6 +1,6 @@
-export type SurvivorProps = {
+export type Survivor = {
   email: string;
-  firstName: string;
-  id: number;
-  lastName: string;
+  name: string;
+  infected: boolean;
+  createdAt: string;
 };

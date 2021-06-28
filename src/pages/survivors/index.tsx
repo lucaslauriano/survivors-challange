@@ -1,20 +1,16 @@
 import {
   Box,
   Flex,
-  Icon,
-  Button,
   Spinner,
   Heading,
-  useDisclosure,
-  useBreakpointValue,
   Divider,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import BlankPage from "../../components/BlankPage";
 import Navbar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import ListSurvivors from "./ListSurvivors";
-import { RiUserAddLine } from "react-icons/ri";
 
 const Survivors = () => {
   // const { data, isLoading, isFetching, error } = useInfecteds();
@@ -27,8 +23,16 @@ const Survivors = () => {
     md: true,
   });
 
+  useEffect(() => {
+    fetch("http://localhost:3000/api/survivors")
+      .then((response) => response.json())
+      .then((data) => console.log("data", data));
+  }, []);
+
   return (
     <Box>
+      <Navbar />
+
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
 

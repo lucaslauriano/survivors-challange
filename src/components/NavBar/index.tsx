@@ -12,6 +12,7 @@ import Profile from "./Profile";
 import Logo from "./Logo";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
+import { DarkModeSwitch } from "../DarkModeSwitch";
 
 const Navbar = () => {
   const { onOpen } = useSidebarDrawer();
@@ -45,7 +46,6 @@ const Navbar = () => {
       )}
       {isLarge && <Logo />}
       <SearchBox />
-
       <Flex align="center" ml="auto">
         {isLarge && (
           <HStack

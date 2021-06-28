@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { SidebarNav } from "./SidebarNav";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
+import { DarkModeSwitch } from "../../components/DarkModeSwitch";
 
 const Sidebar = () => {
   const { isOpen, onClose } = useSidebarDrawer();
@@ -32,6 +33,7 @@ const Sidebar = () => {
               }}
             />
             <DrawerHeader>Navigation</DrawerHeader>
+
             <DrawerBody>
               <SidebarNav />
             </DrawerBody>
