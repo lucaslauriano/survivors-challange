@@ -1,33 +1,13 @@
-import {
-  Box,
-  Flex,
-  Spinner,
-  Heading,
-  Divider,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { Box, Flex, Spinner, Heading, Divider } from "@chakra-ui/react";
+import React from "react";
 import BlankPage from "../../components/BlankPage";
 import Navbar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import ListSurvivors from "./ListSurvivors";
+import { useSurvivors } from "../../hooks/useSurvivor";
 
 const Survivors = () => {
-  // const { data, isLoading, isFetching, error } = useInfecteds();
-
-  const data = [];
-  const isLoading = false;
-  const isFetching = false;
-  const isLarge = useBreakpointValue({
-    base: false,
-    md: true,
-  });
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/survivors")
-      .then((response) => response.json())
-      .then((data) => console.log("data", data));
-  }, []);
+  const { data, isLoading, isFetching, error } = useSurvivors();
 
   return (
     <Box>
@@ -43,11 +23,19 @@ const Survivors = () => {
           <Divider my="6" borderColor="gray.700" />
 
           {isLoading ? (
-            <Flex>
+            <Flex justify="center" align="center">
               <Spinner />
             </Flex>
-          ) : /* !!data && data.length  */ true ? (
-            <ListSurvivors isLoading={isLoading} isFetching={isFetching} />
+          ) : error ? (
+            <Flex justify="center" align="center">
+              Failed!
+            </Flex>
+          ) : !!data && data.length ? (
+            <ListSurvivors
+              survivors={data}
+              isLoading={isLoading}
+              isFetching={isFetching}
+            />
           ) : (
             <BlankPage />
           )}

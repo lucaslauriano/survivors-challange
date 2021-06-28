@@ -3,7 +3,6 @@ import {
   Tr,
   Th,
   Box,
-  Flex,
   Text,
   Icon,
   Thead,
@@ -15,11 +14,13 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React from "react";
+import Link from "next/link";
 import { RiUserSearchLine } from "react-icons/ri";
+
 import SkeletonTBody from "../../components/SkeletonTable";
 import Pagination from "../../components/Pagination";
 import { Survivors } from "../../types/survivors";
-import Link from "next/link";
+import { formatDate } from "../../utils/format";
 
 interface ListSurvivorsProps {
   survivors?: Survivors[];
@@ -37,57 +38,56 @@ const ListSurvivors = ({
     lg: true,
   });
 
-  const handleAddSurvivors = async (id: number) => {};
   return (
     <>
-      {isLoading ? (
-        <Spinner />
+      {!isLoading && isFetching ? (
+        <SkeletonTBody />
       ) : (
-        <>
-          {!isLoading && isFetching ? (
-            <SkeletonTBody />
-          ) : (
-            <Table colorScheme="whiteAlpha">
-              <Thead>
-                <Tr>
-                  <Th px={["4", "6"]} color="gray.300">
-                    <Checkbox colorScheme="yellow" />
-                  </Th>
-                  <Th px={["4", "6"]} color="gray.300">
-                    Survivor
-                  </Th>
-                  {isLarge && (
-                    <Th px={["4", "6"]} color="gray.300">
-                      Infected
-                    </Th>
-                  )}
-                  <Th px={["4", "6"]} color="gray.300"></Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {/*  {survivors?.map((item) => ( */}
-                <Tr>
+        <Table colorScheme="whiteAlpha">
+          <Thead>
+            <Tr>
+              <Th px={["4", "6"]} color="gray.300">
+                <Checkbox colorScheme="yellow" />
+              </Th>
+              <Th px={["4", "6"]} color="gray.300">
+                Survivor
+              </Th>
+              {isLarge && (
+                <Th px={["4", "6"]} color="gray.300">
+                  Created At
+                </Th>
+              )}
+              <Th px={["4", "6"]} color="gray.300">
+                Infected
+              </Th>
+              <Th px={["4", "6"]} color="gray.300"></Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <>
+              {survivors?.map((item) => (
+                <Tr key={item.id}>
                   <Td px={["4", "4", "4", "6"]}>
                     <Checkbox colorScheme="yellow" />
                   </Td>
                   <Td>
                     <Box>
                       <Text fontWeight="bold" color="gray.100">
-                        Leon S. Kennedy
-                        {/* {`${item.survivor.firstName} ${item.survivor.lastName} `} */}
+                        {item.name}
                       </Text>
                       <Text fontSize="sm" color="gray.300">
-                        leon.kennedy@gmail.com
+                        {item.email}
                       </Text>
                     </Box>
                   </Td>
                   {isLarge && (
                     <Td>
-                      <Box>
-                        <Text fontSize="12">04 de Abril de 2021</Text>
-                      </Box>
+                      <Text fontSize="12">{formatDate(item.createdAt)}</Text>
                     </Td>
                   )}
+                  <Td>
+                    <Box>{item.infected ? <>Yes</> : <>No</>}</Box>
+                  </Td>
                   <Td>
                     <Box>
                       <Link href="/survivors/view" passHref>
@@ -108,12 +108,12 @@ const ListSurvivors = ({
                     </Box>
                   </Td>
                 </Tr>
-              </Tbody>
-            </Table>
-          )}
-          <Pagination />
-        </>
+              ))}
+            </>
+          </Tbody>
+        </Table>
       )}
+      <Pagination />
     </>
   );
 };

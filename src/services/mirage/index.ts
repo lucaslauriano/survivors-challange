@@ -26,7 +26,7 @@ const makeServer = () => {
     },
 
     seeds(server) {
-      server.createList("survivor", 50);
+      server.createList("survivor", 10);
     },
 
     routes() {

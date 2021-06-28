@@ -1,8 +1,7 @@
-import { SurvivorProps } from "./survivor";
-
 export type Survivors = {
-  date: string;
+  createdAt: string;
   id: number;
-  survivor: SurvivorProps;
-  survivorId: number;
+  name: string;
+  email: string;
+  infected: boolean;
 };

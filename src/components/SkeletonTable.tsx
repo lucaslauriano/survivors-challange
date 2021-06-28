@@ -1,41 +1,33 @@
-import { Td, Tr, Tbody, Skeleton, SkeletonText } from "@chakra-ui/react";
+import {
+  Td,
+  Tr,
+  Flex,
+  Table,
+  Tbody,
+  Skeleton,
+  SkeletonText,
+  SkeletonCircle,
+} from "@chakra-ui/react";
+import React from "react";
 
 const SkeletonTBody = () => {
   return (
-    <Tbody>
-      <Tr>
-        <Td w="80%">
-          <SkeletonText />
-        </Td>
-        <Td w="20%">
-          <Skeleton />
-        </Td>
-      </Tr>
-      <Tr>
-        <Td w="80%">
-          <SkeletonText />
-        </Td>
-        <Td w="20%">
-          <Skeleton />
-        </Td>
-      </Tr>
-      <Tr>
-        <Td w="80%">
-          <SkeletonText />
-        </Td>
-        <Td w="20%">
-          <Skeleton />
-        </Td>
-      </Tr>
-      <Tr>
-        <Td w="80%">
-          <SkeletonText />
-        </Td>
-        <Td w="20%">
-          <SkeletonText />
-        </Td>
-      </Tr>
-    </Tbody>
+    <Table colorScheme="whiteAlpha">
+      <Tbody>
+        <Tr>
+          <Td w="5%">
+            <SkeletonCircle />
+          </Td>
+          <Td w="75%">
+            <SkeletonText />
+          </Td>
+
+          <Td w="20%">
+            <SkeletonText />
+          </Td>
+        </Tr>
+      </Tbody>
+    </Table>
   );
 };
 
