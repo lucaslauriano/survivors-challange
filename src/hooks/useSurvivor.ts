@@ -2,9 +2,25 @@ import { useQuery } from "react-query";
 import { Survivors } from "../types/survivors";
 import { api } from "../utils/axios";
 
-export const getSurvivors = async (): Promise<Survivors[]> => {
-  const { data } = await api.get("survivors");
+type GetUsersResponseProps = {
+  totalCount: number;
+  survivors: Survivors[];
+};
 
+export const getSurvivors = async (
+  page: number,
+  infecteds: boolean,
+  search
+): Promise<GetUsersResponseProps> => {
+  const { data, headers } = await api.get("survivors", {
+    params: {
+      page,
+      infecteds,
+      search,
+    },
+  });
+
+  const totalCount = Number(headers["x-total-count"]);
   const survivors = data.survivors.map((item) => {
     return {
       id: item.id,
@@ -14,9 +30,18 @@ export const getSurvivors = async (): Promise<Survivors[]> => {
       createdAt: item.createdAt,
     };
   });
-  return survivors;
+  return {
+    totalCount,
+    survivors,
+  };
 };
 
-export const useSurvivors = () => {
-  return useQuery("survivors", getSurvivors);
+export const useSurvivors = (
+  page: number,
+  infecteds?: boolean,
+  search?: string
+) => {
+  return useQuery(["survivors", { page, infecteds, search }], () =>
+    getSurvivors(page, infecteds, search)
+  );
 };

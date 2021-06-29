@@ -1,6 +1,6 @@
 
 <p align="center">
-   :computer: Dashboard developed from scratch. Project developed during for the Maxihost challange | <a href="https://www.maxihost.com/br">Maxihost</a>
+   :computer: Dashboard developed from scratch. Project developed for the Maxihost challenge | <a href="https://www.maxihost.com/br">Maxihost</a>
 </p>
 
 <div align="center">
@@ -25,7 +25,6 @@ This project was made using the follow technologies:
 * [Emotion](https://emotion.sh/)
 * [MirageJS](https://miragejs.com/)
 * [React Query](https://react-query.tanstack.com/)
-* [React Hook Form](https://react-hook-form.com/)
 * [Apex Charts](https://apexcharts.com/)
 * [Framer Emotion](https://www.framer.com/motion/)
 * [React](https://reactjs.org/)
@@ -48,7 +47,7 @@ $ yarn
 $ yarn dev
 ```
 
-Go to http://localhost:3000/ to see the result.
+Go to http://localhost:3000/survivors to see the result.
 # :sparkles: Contributing
 
 - Fork this repository;

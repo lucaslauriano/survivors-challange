@@ -12,8 +12,8 @@ export default function Dashboar() {
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
         <Sidebar />
         <SimpleGrid flex="1" gap="4" minChildWidth={320} aling="flex-start">
-          <AreaChart title="Inffefcteds - Week" />
-          <AreaChart title="Inffefcteds - Month" />
+          <AreaChart title="Infecteds - Week" />
+          <AreaChart title="Infecteds - Month" />
         </SimpleGrid>
       </Flex>
     </Flex>

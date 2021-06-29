@@ -9,16 +9,19 @@ import {
   Table,
   Tbody,
   Button,
-  Spinner,
   Checkbox,
   useBreakpointValue,
+  Tag,
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
-import { RiUserSearchLine } from "react-icons/ri";
+import {
+  RiAlertFill,
+  RiHeartPulseFill,
+  RiUserSearchLine,
+} from "react-icons/ri";
 
 import SkeletonTBody from "../../components/SkeletonTable";
-import Pagination from "../../components/Pagination";
 import { Survivors } from "../../types/survivors";
 import { formatDate } from "../../utils/format";
 
@@ -86,20 +89,40 @@ const ListSurvivors = ({
                     </Td>
                   )}
                   <Td>
-                    <Box>{item.infected ? <>Yes</> : <>No</>}</Box>
+                    <Box>
+                      {item.infected ? (
+                        <Tag colorScheme="red">
+                          <Icon color="red.400" as={RiAlertFill} />
+                          <Text ml={1} mt="2px">
+                            Infected
+                          </Text>
+                        </Tag>
+                      ) : (
+                        <Tag colorScheme="green">
+                          <Icon color="green.400" as={RiHeartPulseFill} />
+                          <Text ml={1} mt="2px">
+                            Healthy
+                          </Text>
+                        </Tag>
+                      )}
+                    </Box>
                   </Td>
                   <Td>
                     <Box>
-                      <Link href="/survivors/view" passHref>
+                      <Link
+                        as={`/survivors/${item.id}`}
+                        href={`/survivors/${item.id}`}
+                        passHref
+                      >
                         <Button
                           size="sm"
                           variant="outline"
-                          color="blue.200"
-                          colorScheme="blue"
+                          color="gray.50"
+                          colorScheme="gray"
                           leftIcon={<Icon as={RiUserSearchLine} />}
                           _hover={{
                             bgColor: "gray.800",
-                            color: "blue.400",
+                            color: "gray.400",
                           }}
                         >
                           View
@@ -113,7 +136,6 @@ const ListSurvivors = ({
           </Tbody>
         </Table>
       )}
-      <Pagination />
     </>
   );
 };
