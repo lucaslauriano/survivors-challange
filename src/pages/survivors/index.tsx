@@ -30,7 +30,7 @@ const Survivors = () => {
               Survivors
             </Heading>
             <Button onClick={handleShowAllInfecteds}>
-              {!!infecteds ? "Show All" : " Show infecteds"}
+              {!!infecteds ? "Show all" : " Show infecteds"}
             </Button>
           </Flex>
           <Divider my="6" borderColor="gray.700" />
