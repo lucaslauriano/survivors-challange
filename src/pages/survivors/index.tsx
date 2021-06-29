@@ -1,13 +1,15 @@
 import { Box, Flex, Spinner, Heading, Divider } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import BlankPage from "../../components/BlankPage";
 import Navbar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
 import ListSurvivors from "./ListSurvivors";
 import { useSurvivors } from "../../hooks/useSurvivor";
+import Pagination from "../../components/Pagination";
 
 const Survivors = () => {
-  const { data, isLoading, isFetching, error } = useSurvivors();
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isFetching, error } = useSurvivors(page);
 
   return (
     <Box>
@@ -30,12 +32,19 @@ const Survivors = () => {
             <Flex justify="center" align="center">
               Failed!
             </Flex>
-          ) : !!data && data.length ? (
-            <ListSurvivors
-              survivors={data}
-              isLoading={isLoading}
-              isFetching={isFetching}
-            />
+          ) : !!data.survivors && data.survivors.length ? (
+            <>
+              <ListSurvivors
+                survivors={data.survivors}
+                isLoading={isLoading}
+                isFetching={isFetching}
+              />
+              <Pagination
+                currentPage={page}
+                onPageChange={setPage}
+                totalCountItems={data.totalCount}
+              />
+            </>
           ) : (
             <BlankPage />
           )}
