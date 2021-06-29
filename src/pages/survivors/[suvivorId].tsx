@@ -36,7 +36,6 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
     const response = await api.get(`survivors/${suvivorId}`);
     return response.data.survivor;
   });
-  console.log("testes", survivor);
 
   const updateSurvivor = useMutation(
     async (id: number) => {

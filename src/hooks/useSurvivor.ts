@@ -9,14 +9,14 @@ type GetUsersResponseProps = {
 
 export const getSurvivors = async (
   page: number,
-  infecteds: boolean,
-  search
+  infecteds?: boolean,
+  search?: string
 ): Promise<GetUsersResponseProps> => {
   const { data, headers } = await api.get("survivors", {
     params: {
       page,
-      infecteds,
       search,
+      ...(!!infecteds ? { infecteds } : {}),
     },
   });
 
@@ -27,7 +27,7 @@ export const getSurvivors = async (
       email: item.email,
       name: item.name,
       infected: item.infected,
-      createdAt: item.createdAt,
+      createdAt: item.created_at,
     };
   });
   return {

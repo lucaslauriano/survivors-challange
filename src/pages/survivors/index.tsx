@@ -1,5 +1,5 @@
-import { Box, Flex, Spinner, Heading, Divider } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Flex, Spinner, Heading, Divider, Button } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import BlankPage from "../../components/BlankPage";
 import Navbar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
@@ -9,7 +9,13 @@ import Pagination from "../../components/Pagination";
 
 const Survivors = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetching, error } = useSurvivors(page);
+  const [infecteds, setInfecteds] = useState(false);
+
+  const { data, isLoading, isFetching, error } = useSurvivors(page, infecteds);
+
+  const handleShowAllInfecteds = () => {
+    setInfecteds(!infecteds);
+  };
 
   return (
     <Box>
@@ -19,9 +25,14 @@ const Survivors = () => {
         <Sidebar />
 
         <Box flex="1" borderRadius={6} bg="gray.800" p="8">
-          <Heading size="md" fontWeight="normal">
-            Survivors
-          </Heading>
+          <Flex justify="space-between">
+            <Heading size="md" fontWeight="normal">
+              Survivors
+            </Heading>
+            <Button onClick={handleShowAllInfecteds}>
+              {!!infecteds ? "Show All" : " Show infecteds"}
+            </Button>
+          </Flex>
           <Divider my="6" borderColor="gray.700" />
 
           {isLoading ? (
