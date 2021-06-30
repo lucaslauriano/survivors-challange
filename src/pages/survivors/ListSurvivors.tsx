@@ -2,6 +2,7 @@ import {
   Td,
   Tr,
   Th,
+  Tag,
   Box,
   Text,
   Icon,
@@ -11,7 +12,6 @@ import {
   Button,
   Checkbox,
   useBreakpointValue,
-  Tag,
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
@@ -46,7 +46,7 @@ const ListSurvivors = ({
       {!isLoading && isFetching ? (
         <SkeletonTBody />
       ) : (
-        <Table colorScheme="whiteAlpha">
+        <Table>
           <Thead>
             <Tr>
               <Th px={["4", "6"]} color="gray.300">
@@ -55,11 +55,11 @@ const ListSurvivors = ({
               <Th px={["4", "6"]} color="gray.300">
                 Survivor
               </Th>
-              {isLarge && (
+              {/*  {false && (
                 <Th px={["4", "6"]} color="gray.300">
                   Created At
                 </Th>
-              )}
+              )} */}
               <Th px={["4", "6"]} color="gray.300">
                 Infected
               </Th>
@@ -83,11 +83,12 @@ const ListSurvivors = ({
                       </Text>
                     </Box>
                   </Td>
-                  {isLarge && (
+                  {/*  {false && (
                     <Td>
                       <Text fontSize="12">{formatDate(item.createdAt)}</Text>
                     </Td>
                   )}
+                     */}
                   <Td>
                     <Box>
                       {item.infected ? (

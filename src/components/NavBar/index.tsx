@@ -12,7 +12,6 @@ import Profile from "./Profile";
 import Logo from "./Logo";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
-import { DarkModeSwitch } from "../DarkModeSwitch";
 
 const Navbar = () => {
   const { onOpen } = useSidebarDrawer();

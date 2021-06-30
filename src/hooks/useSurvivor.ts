@@ -15,8 +15,8 @@ export const getSurvivors = async (
   const { data, headers } = await api.get("survivors", {
     params: {
       page,
-      search,
       ...(!!infecteds ? { infecteds } : {}),
+      search,
     },
   });
 
@@ -27,7 +27,7 @@ export const getSurvivors = async (
       email: item.email,
       name: item.name,
       infected: item.infected,
-      createdAt: item.created_at,
+      // createdAt: item.created_at,
     };
   });
   return {

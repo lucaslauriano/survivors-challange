@@ -1,5 +1,5 @@
 export type Survivors = {
-  createdAt: string;
+  //createdAt: string;
   id: number;
   name: string;
   email: string;

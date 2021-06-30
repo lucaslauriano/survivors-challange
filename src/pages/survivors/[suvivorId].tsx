@@ -42,7 +42,6 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
       const { data } = await api.put(`survivors/${id}`, {
         ...survivor,
         infected: true,
-        created_at: new Date(),
       });
 
       return data.response;

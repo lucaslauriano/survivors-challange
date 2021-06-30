@@ -5,8 +5,8 @@ import {
   createServer,
   ActiveModelSerializer,
 } from "miragejs";
+
 import { Survivor } from "../../types/survivor";
-import faker from "faker";
 
 const makeServer = () => {
   const server = createServer({
@@ -16,27 +16,28 @@ const makeServer = () => {
     models: {
       survivor: Model.extend<Partial<Survivor>>({}),
     },
-    factories: {
-      survivor: Factory.extend({
-        name() {
-          return faker.name.findName();
-        },
-        email() {
-          return faker.internet.email();
-        },
-        infected() {
-          return faker.datatype.boolean();
-        },
-        createdAt() {
-          return faker.date.recent(10);
-        },
-      }),
-    },
-
     seeds(server) {
-      server.createList("survivor", 200);
+      server.create("survivor", {
+        name: "Leon Scot Kennedy",
+        email: "leon.kennedy@umbrellacorp.com",
+        infected: false,
+      } as any);
+      server.create("survivor", {
+        name: "Chris Reedfield",
+        email: "chris.redfield@umbrellacorp.com",
+        infected: false,
+      } as any);
+      server.create("survivor", {
+        name: "Claire Redfield",
+        email: "claire.redfield@umbrellacorp.com",
+        infected: false,
+      } as any);
+      server.create("survivor", {
+        name: "Ada Wong",
+        email: "ada.wong@umbrellacorp.com",
+        infected: false,
+      } as any);
     },
-
     routes() {
       this.namespace = "api";
       this.timing = 750;
@@ -45,6 +46,7 @@ const makeServer = () => {
           page = 1,
           per_page = 10,
           infecteds = false,
+          search = "",
         } = request.queryParams;
         const total = schema.all("survivor").length;
         const pageStart = (Number(page) - 1) * Number(per_page);
@@ -68,7 +70,10 @@ const makeServer = () => {
 
       this.get("/survivors/:id");
 
-      this.patch("/survivors/:id");
+      this.put("/survivors/:id", (schema, request) => {
+        let survivor = JSON.parse(request.requestBody);
+        return schema.db.survivors.update(survivor.id, survivor);
+      });
 
       this.namespace = "";
       this.passthrough();

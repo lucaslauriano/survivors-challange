@@ -1,6 +1,6 @@
 export type Survivor = {
-  email: string;
   name: string;
+  email: string;
   infected: boolean;
   createdAt: string;
 };

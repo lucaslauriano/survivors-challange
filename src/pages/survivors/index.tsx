@@ -1,5 +1,5 @@
 import { Box, Flex, Spinner, Heading, Divider, Button } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BlankPage from "../../components/BlankPage";
 import Navbar from "../../components/NavBar";
 import Sidebar from "../../components/Sidebar";
@@ -10,8 +10,13 @@ import Pagination from "../../components/Pagination";
 const Survivors = () => {
   const [page, setPage] = useState(1);
   const [infecteds, setInfecteds] = useState(false);
+  const [search, setSearch] = useState("");
 
-  const { data, isLoading, isFetching, error } = useSurvivors(page, infecteds);
+  const { data, isLoading, isFetching, error } = useSurvivors(
+    page,
+    infecteds,
+    search
+  );
 
   const handleShowAllInfecteds = () => {
     setInfecteds(!infecteds);
