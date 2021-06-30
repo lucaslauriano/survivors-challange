@@ -39,7 +39,7 @@ $ git clone https://github.com/lucaslauriano/survivors-challange.git
 ```
 
 ```bash
-$ cd backend
+$ cd /backend
 # Install Dependencies
 $ yarn
 ```
@@ -50,7 +50,7 @@ $ yarn start
 
 ```bash
 $ cd ..
-$ cd frontend
+$ cd /frontend
 # Install Dependencies
 $ yarn
 ```
