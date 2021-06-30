@@ -55,6 +55,7 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
 
   const handleUpdateSurvivor = async (id: number) => {
     await updateSurvivor.mutateAsync(id);
+    router.push("/survivors");
   };
 
   return (

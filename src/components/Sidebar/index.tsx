@@ -2,16 +2,15 @@ import React from "react";
 import {
   Box,
   Drawer,
+  DrawerBody,
   DrawerHeader,
   DrawerContent,
   DrawerOverlay,
   DrawerCloseButton,
   useBreakpointValue,
-  DrawerBody,
 } from "@chakra-ui/react";
 import { SidebarNav } from "./SidebarNav";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
-import { DarkModeSwitch } from "../../components/DarkModeSwitch";
 
 const Sidebar = () => {
   const { isOpen, onClose } = useSidebarDrawer();

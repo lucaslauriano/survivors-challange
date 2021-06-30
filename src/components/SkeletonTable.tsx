@@ -1,10 +1,8 @@
 import {
   Td,
   Tr,
-  Flex,
   Table,
   Tbody,
-  Skeleton,
   SkeletonText,
   SkeletonCircle,
 } from "@chakra-ui/react";

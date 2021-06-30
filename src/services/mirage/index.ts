@@ -1,12 +1,6 @@
-import {
-  Model,
-  Factory,
-  Response,
-  createServer,
-  ActiveModelSerializer,
-} from "miragejs";
+import { Model, Response, createServer, ActiveModelSerializer } from "miragejs";
 
-import { Survivor } from "../../types/survivor";
+import { Survivor } from "../../types/survivors";
 
 const makeServer = () => {
   const server = createServer({
@@ -17,26 +11,40 @@ const makeServer = () => {
       survivor: Model.extend<Partial<Survivor>>({}),
     },
     seeds(server) {
-      server.create("survivor", {
-        name: "Leon Scot Kennedy",
-        email: "leon.kennedy@umbrellacorp.com",
-        infected: false,
-      } as any);
-      server.create("survivor", {
-        name: "Chris Reedfield",
-        email: "chris.redfield@umbrellacorp.com",
-        infected: false,
-      } as any);
-      server.create("survivor", {
-        name: "Claire Redfield",
-        email: "claire.redfield@umbrellacorp.com",
-        infected: false,
-      } as any);
-      server.create("survivor", {
-        name: "Ada Wong",
-        email: "ada.wong@umbrellacorp.com",
-        infected: false,
-      } as any);
+      server.db.loadData({
+        survivors: [
+          {
+            name: "Leon Scot Kennedy",
+            email: "leon.kennedy@umbrellacorp.com",
+            infected: false,
+            createdAt: new Date(),
+          },
+          {
+            name: "Chris Reedfield",
+            email: "chris.redfield@umbrellacorp.com",
+            infected: false,
+            createdAt: new Date(),
+          },
+          {
+            name: "Claire Redfield",
+            email: "claire.redfield@umbrellacorp.com",
+            infected: false,
+            createdAt: new Date(),
+          },
+          {
+            name: "Ada Wong",
+            email: "ada.wong@umbrellacorp.com",
+            infected: false,
+            createdAt: new Date(),
+          },
+          {
+            name: "Ada Wong",
+            email: "ada.wong@umbrellacorp.com",
+            infected: false,
+            createdAt: new Date(),
+          },
+        ],
+      });
     },
     routes() {
       this.namespace = "api";
@@ -44,7 +52,7 @@ const makeServer = () => {
       this.get("/survivors", function (schema, request) {
         const {
           page = 1,
-          per_page = 10,
+          per_page = 2,
           infecteds = false,
           search = "",
         } = request.queryParams;

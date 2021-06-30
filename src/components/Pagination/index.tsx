@@ -1,4 +1,4 @@
-import { Text, Flex, Stack } from "@chakra-ui/react";
+import { Text, Stack } from "@chakra-ui/react";
 import PaginationItem from "./PaginationItem";
 
 interface PaginationProps {
@@ -20,7 +20,7 @@ function generatePages(from: number, to: number) {
 
 const Pagination = ({
   totalCountItems,
-  itemsPerPage = 10,
+  itemsPerPage = 2,
   currentPage = 1,
   onPageChange,
 }: PaginationProps) => {
@@ -49,9 +49,8 @@ const Pagination = ({
       direction={["column", "row"]}
     >
       <Stack direction="row">
-        <Text fontWeight="700">0 -</Text>
-        <Text fontWeight="700">10 de</Text>
-        <Text fontWeight="700">100</Text>
+        <Text fontWeight="700">Total survivors</Text>
+        <Text fontWeight="700">{totalCountItems}</Text>
       </Stack>
 
       <Stack direction="row" spacing="2">

@@ -27,7 +27,7 @@ export const getSurvivors = async (
       email: item.email,
       name: item.name,
       infected: item.infected,
-      // createdAt: item.created_at,
+      createdAt: item.createdAt,
     };
   });
   return {

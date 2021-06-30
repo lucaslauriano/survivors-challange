@@ -23,7 +23,6 @@ import {
 
 import SkeletonTBody from "../../components/SkeletonTable";
 import { Survivors } from "../../types/survivors";
-import { formatDate } from "../../utils/format";
 
 interface ListSurvivorsProps {
   survivors?: Survivors[];
@@ -55,7 +54,7 @@ const ListSurvivors = ({
               <Th px={["4", "6"]} color="gray.300">
                 Survivor
               </Th>
-              {/*  {false && (
+              {/*   {isLarge && (
                 <Th px={["4", "6"]} color="gray.300">
                   Created At
                 </Th>
@@ -83,12 +82,12 @@ const ListSurvivors = ({
                       </Text>
                     </Box>
                   </Td>
-                  {/*  {false && (
+                  {/*       {isLarge && (
                     <Td>
                       <Text fontSize="12">{formatDate(item.createdAt)}</Text>
                     </Td>
-                  )}
-                     */}
+                  )} */}
+
                   <Td>
                     <Box>
                       {item.infected ? (
