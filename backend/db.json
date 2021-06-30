@@ -1,0 +1,56 @@
+{
+  "infecteds": [
+    {
+      "1": "1",
+      "date": "2021-06-09T07:00:00.000Z",
+      "id": 3
+    },
+    {
+      "1": "1",
+      "date": "2021-05-12T08:00:00.000Z",
+      "id": 4
+    },
+    {
+      "1": "1",
+      "date": "2021-05-24T06:59:03.297Z",
+      "id": 5
+    },
+    {
+      "1": "1",
+      "date": "2021-05-05T20:30:00.000Z",
+      "id": 6
+    }
+  ],
+  "survivors": [
+    {
+      "id": "1",
+      "name": "Leon Scot Kennedy",
+      "email": "leon.kennedy@umbrellacorp.com",
+      "infected": true
+    },
+    {
+      "id": "2",
+      "name": "Chris Reedfield",
+      "email": "chris.redfield@umbrellacorp.com",
+      "infected": true
+    },
+    {
+      "id": "3",
+      "name": "Claire Redfield",
+      "email": "claire.redfield@umbrellacorp.com",
+      "infected": true
+    },
+    {
+      "id": "4",
+      "name": "Ada Wong",
+      "email": "ada.wong@umbrellacorp.com",
+      "infected": false
+    },
+    {
+      "id": "5",
+      "name": "Lucas Lauriano de Souza",
+      "email": "lucas.lauriano@umbrellacorp.com",
+      "infected": false
+    }
+  ]
+}

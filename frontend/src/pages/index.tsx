@@ -15,11 +15,9 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthFrame from "../components/AuthFrame";
 import Input from "../components/Form/Input";
-import { FiHelpCircle } from "react-icons/fi";
 import AuthContext from "../contexts/AuthContext";
 import { AuthFormData } from "../types/auth";
 import { QueryClient } from "react-query";
-import Logo from "../components/NavBar/Logo";
 
 export const queryClient = new QueryClient();
 
@@ -88,15 +86,6 @@ const App = () => {
             onSubmit={handleSubmit(handleAuth)}
           >
             <Stack spacing="4">
-              <Text
-                alignSelf="center"
-                as="span"
-                fontSize="4xl"
-                ml="2"
-                color="yellow.500"
-              >
-                ENTER
-              </Text>
               <Input
                 id="email"
                 name="email"

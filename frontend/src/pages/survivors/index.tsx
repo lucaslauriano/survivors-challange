@@ -8,12 +8,14 @@ import { useSurvivors } from "../../hooks/useSurvivor";
 import Pagination from "../../components/Pagination";
 
 const Survivors = () => {
-  const [page, setPage] = useState(1);
+  const [_page, setPage] = useState(1);
+  const [_limit, setLimit] = useState(5);
   const [infecteds, setInfecteds] = useState(false);
   const [search, setSearch] = useState("");
 
   const { data, isLoading, isFetching, error } = useSurvivors(
-    page,
+    _page,
+    _limit,
     infecteds,
     search
   );
@@ -56,7 +58,7 @@ const Survivors = () => {
                 isFetching={isFetching}
               />
               <Pagination
-                currentPage={page}
+                currentPage={_page}
                 onPageChange={setPage}
                 totalCountItems={data.totalCount}
               />

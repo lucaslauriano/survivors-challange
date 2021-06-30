@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Flex,
   Icon,
@@ -12,8 +12,10 @@ import Profile from "./Profile";
 import Logo from "./Logo";
 import { RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, isAuthenticated, logout } = useAuth();
   const { onOpen } = useSidebarDrawer();
   const isLarge = useBreakpointValue({
     base: false,

@@ -34,11 +34,11 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
     error,
   } = useQuery("survivors", async () => {
     const response = await api.get(`survivors/${suvivorId}`);
-    return response.data.survivor;
+    return response.data;
   });
 
   const updateSurvivor = useMutation(
-    async (id: number) => {
+    async (id: string) => {
       const { data } = await api.put(`survivors/${id}`, {
         ...survivor,
         infected: true,
@@ -53,7 +53,7 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
     }
   );
 
-  const handleUpdateSurvivor = async (id: number) => {
+  const handleUpdateSurvivor = async (id: string) => {
     await updateSurvivor.mutateAsync(id);
     router.push("/survivors");
   };
@@ -102,7 +102,7 @@ const Survivor = ({ isOpen, onClose }: SurvivorProps) => {
               <Button
                 colorScheme="yellow"
                 isDisabled={survivor?.infected}
-                onClick={() => handleUpdateSurvivor(survivor.id)}
+                onClick={() => handleUpdateSurvivor(suvivorId[0])}
               >
                 Mark as infected
               </Button>

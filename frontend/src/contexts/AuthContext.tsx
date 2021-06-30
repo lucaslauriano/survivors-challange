@@ -19,6 +19,7 @@ interface AuthState {
 
 type UserProps = {
   name: string;
+  email: string;
 };
 
 interface AuthContextValue extends AuthState {
@@ -124,8 +125,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         const response = await api.post("login", {
           ...user,
         });
-        const { name } = response.data;
-        setUser({ name });
+        console.log("asdasdasdasda", response.data);
+        const { name, email } = response.data;
+        setUser({ name, email });
         setSession(response.data.token);
         const { token } = response.data;
 
@@ -145,7 +147,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     },
     {
       onSuccess: () => {
-        router.push("consultations");
+        router.push("survivors");
       },
     }
   );
@@ -171,7 +173,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         if (accessToken) {
           setSession(accessToken);
 
-          router.push("/consultations");
+          router.push("/survivors");
 
           dispatch({
             type: "INITIALISE",
