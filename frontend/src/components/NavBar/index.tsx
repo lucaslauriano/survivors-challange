@@ -10,7 +10,7 @@ import {
 import SearchBox from "./SearchBox";
 import Profile from "./Profile";
 import Logo from "./Logo";
-import { RiMenuLine } from "react-icons/ri";
+import { RiLogoutCircleRLine, RiMenuLine } from "react-icons/ri";
 import { useSidebarDrawer } from "../../hooks/useSidebarDrawer";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -60,21 +60,34 @@ const Navbar = () => {
             <Profile />
           </HStack>
         )}
-        <Button
-          w="57px"
-          h="32px"
-          color="yellow.500"
-          border="2px"
-          _hover={{
-            bgColor: "gray.800",
-            color: "yellow.400",
-          }}
-          variant="outline"
-          alignSelf="flex-end"
-          colorScheme="yellow"
-        >
-          Sair
-        </Button>
+
+        {isAuthenticated && (
+          <Flex align="center" ml="auto">
+            <Button
+              color="yellow.500"
+              border="2px"
+              onClick={logout}
+              _hover={{
+                bgColor: "gray.800",
+                color: "yellow.400",
+              }}
+              variant="outline"
+              alignSelf="flex-end"
+              colorScheme="yellow"
+            >
+              <IconButton
+                aria-label="Open navigation"
+                icon={<Icon as={RiLogoutCircleRLine} fontSize="24" />}
+                variant="unstyled"
+                onClick={onOpen}
+                mr="2"
+                _focus={{
+                  boxShadow: "none",
+                }}
+              />
+            </Button>
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );
