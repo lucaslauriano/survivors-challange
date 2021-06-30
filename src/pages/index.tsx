@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Icon,
   Text,
   Stack,
   Button,
@@ -20,23 +19,20 @@ import { FiHelpCircle } from "react-icons/fi";
 import AuthContext from "../contexts/AuthContext";
 import { AuthFormData } from "../types/auth";
 import { QueryClient } from "react-query";
+import Logo from "../components/NavBar/Logo";
 
 export const queryClient = new QueryClient();
 
 export const authFormSchema = yup.object().shape({
-  email: yup
-    .string()
-    .required("E-mail é  obrigatório")
-    .email("E-mail digitado é inválido"),
+  email: yup.string().required("E-mail is required").email("Invalid E-mail"),
   password: yup
     .string()
-    .required("Senha é obrigatória")
-    .min(6, "Senha deve conter no mínimo 6 caracteres.")
-    .max(64, "Senha deve conter no máximo 64 caracteres."),
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters."),
 });
 
 const App = () => {
-  const { login } = useContext(AuthContext);
+  const { login, isAuthenticated } = useContext(AuthContext);
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(authFormSchema),
@@ -55,71 +51,85 @@ const App = () => {
 
   return (
     <Flex direction="column" W="100vw" h="100vh">
-      <Flex>
-        <Navbar isLarge={isLarge} />
-      </Flex>
+      <Flex>{isAuthenticated && <Navbar />}</Flex>
       <Flex mt="60px" direction={["column", "column", "row"]}>
         <Center w="100%" mb={["60px", "60px", "0"]}>
           <Box flex="1">
             <Flex justifyContent="center">
-              <Heading ml="6" color="blue.900" fontSize={["32px", "52px"]}>
-                Faça Login
+              <Heading ml="6" color="yellow.500" fontSize={["32px", "52px"]}>
+                <Text
+                  w="64"
+                  fontSize={["2xl", "5xl"]}
+                  fontWeight="bold"
+                  color="gray.50"
+                  letterSpacing="tight"
+                >
+                  survivors
+                  <Text as="span" fontSize="4xl" ml="2" color="yellow.500">
+                    ☣
+                  </Text>
+                </Text>
               </Heading>
             </Flex>
-            <Flex justifyContent="center">{isLarge && <AuthFrame />}</Flex>
+            <Flex mt="10" ml="16" justifyContent="center">
+              {isLarge && <AuthFrame />}
+            </Flex>
           </Box>
         </Center>
         <Center w="100%">
           <Flex
             w="100%"
+            p="8"
             as="form"
+            bg="gray.800"
             flexDir="column"
-            maxWidth={isLarge ? "235px" : "275px"}
+            maxWidth={360}
+            borderRadius={6}
             onSubmit={handleSubmit(handleAuth)}
           >
             <Stack spacing="4">
+              <Text
+                alignSelf="center"
+                as="span"
+                fontSize="4xl"
+                ml="2"
+                color="yellow.500"
+              >
+                ENTER
+              </Text>
               <Input
                 id="email"
                 name="email"
-                size="sm"
                 type="email"
                 label="E-mail"
                 error={errors.email}
-                bgColor="gray.50"
-                variant="flushed"
-                placeholder="Digite seu e-mail"
                 {...register("email")}
               />
               <Input
                 id="password"
                 name="password"
-                size="sm"
                 type="password"
-                error={errors.password}
                 label={
                   <Flex>
-                    <Text>Senha </Text>
-                    <Icon as={FiHelpCircle} mt={1} ml={1} />
+                    <Text>Password </Text>
                   </Flex>
                 }
-                bgColor="gray.50"
-                variant="flushed"
-                placeholder="Digite sua senha"
+                error={errors.password}
                 {...register("password")}
               />
             </Stack>
 
             <Button
-              mt="68px"
-              bg="blue.500"
+              mt="50px"
+              bg="yellow.500"
               type="submit"
               color="white"
+              colorScheme="yellow"
               isLoading={formState.isSubmitting}
-              colorScheme="blue"
               isFullWidth
-              borderRadius={8}
+              borderRadius={6}
             >
-              Entrar
+              Log In
             </Button>
           </Flex>
         </Center>

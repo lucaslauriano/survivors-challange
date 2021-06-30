@@ -14,22 +14,26 @@ import React, {
   ElementType,
   ForwardRefRenderFunction,
 } from "react";
+import { FieldError } from "react-hook-form";
+import { BsEyeSlash } from "react-icons/bs";
+import { BsEyeFill } from "react-icons/bs";
 
 interface InputProps extends ChakraInputProps {
   name: string;
   label?: string | React.ReactNode;
   iconRight?: ElementType;
+  error?: FieldError;
 }
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { ...props }: InputProps,
   ref
 ) => {
-  const { name, label, iconRight, type } = props;
+  const { name, label, iconRight, type, error = null } = props;
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <FormControl>
+    <FormControl isInvalid={!!error}>
       {!!label && <FormLabel htmlFor="email">{label}</FormLabel>}
       <ChakraInput
         id={name}
@@ -59,8 +63,18 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           onClick={() => {
             setShowPassword(!showPassword);
           }}
+          children={
+            <Icon
+              mt="4"
+              mr="2"
+              color="white"
+              fontSize="1xl"
+              as={showPassword ? BsEyeFill : BsEyeSlash}
+            />
+          }
         />
       )}
+      {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
     </FormControl>
   );
 };
